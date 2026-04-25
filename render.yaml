@@ -40,7 +40,6 @@ services:
     name: gameloop-client
     runtime: static
     rootDir: client
-    plan: free
     buildCommand: npm install && npm run build
     staticPublishPath: dist
     envVars:
