@@ -103,7 +103,7 @@ EMAIL_USER=
 EMAIL_PASS=
 EMAIL_FROM="GameLoop <no-reply@gameloop.com>"
 
-ADMIN_EMAIL=mujahidabdullah54@gmail.com
+ADMIN_EMAIL=gameloop35gl@gmail.com
 ADMIN_PASSWORD=abdullaH1150
 ```
 
@@ -122,7 +122,7 @@ npm run seed
 ```
 
 This creates:
-- Admin user — `mujahidabdullah54@gmail.com` / `abdullaH1150`
+- Admin user — `gameloop35gl@gmail.com` / `abdullaH1150`
 - Test user — `user@gameloop.com` / `user123`
 - 5 sample PS5 games
 
@@ -297,7 +297,7 @@ All timestamps auto-managed via Mongoose `{ timestamps: true }`.
 ## Test Accounts
 
 After seeding:
-- **Admin** — `mujahidabdullah54@gmail.com` / `abdullaH1150`
+- **Admin** — `gameloop35gl@gmail.com` / `abdullaH1150`
 - **User**  — `user@gameloop.com` / `user123`
 
 ---

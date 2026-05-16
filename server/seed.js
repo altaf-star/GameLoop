@@ -43,7 +43,7 @@ const GAMES = [
 // Exported so the server can auto-seed when running with the in-memory DB,
 // and usable standalone via `npm run seed` against a real DB.
 async function seed() {
-  const adminEmail = process.env.ADMIN_EMAIL || 'mujahidabdullah54@gmail.com';
+  const adminEmail = process.env.ADMIN_EMAIL || 'gameloop35gl@gmail.com';
   const adminPass = process.env.ADMIN_PASSWORD || 'abdullaH1150';
   const existingAdmin = await User.findOne({ email: adminEmail });
   if (!existingAdmin) {

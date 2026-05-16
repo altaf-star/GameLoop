@@ -33,6 +33,8 @@ services:
         sync: false
       - key: ADMIN_PASSWORD
         sync: false
+      - key: SUPPORT_EMAIL
+        sync: false
       - key: AUTO_SEED
         value: "true"
 

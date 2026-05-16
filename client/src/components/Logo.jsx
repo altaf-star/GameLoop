@@ -4,7 +4,7 @@
 export default function Logo({ className = 'h-9 w-auto' }) {
   return (
     <img
-      src="/GameLoop.png"
+      src="/GameLoop.jpg"
       alt="GameLoop"
       className={className}
       draggable={false}

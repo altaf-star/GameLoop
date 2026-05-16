@@ -30,7 +30,7 @@ export default function Contact() {
         <div>
           <div className="card mb-4">
             <h3 className="font-semibold mb-2">Support</h3>
-            <p className="text-sm text-ps-muted">mujahidabdullah54@gmail.com</p>
+            <p className="text-sm text-ps-muted">gameloop35gl@gmail.com</p>
             <p className="text-sm text-ps-muted">+92 315 7870229 (WhatsApp)</p>
           </div>
           <div className="card">

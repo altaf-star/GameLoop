@@ -32,11 +32,14 @@ exports.send = async (req, res, next) => {
       return res.status(429).json({ message: 'Too many messages — please try again later' });
     }
 
-    const adminInbox = process.env.ADMIN_EMAIL;
-    if (!adminInbox) return res.status(500).json({ message: 'Admin inbox not configured' });
+    // Support inbox is intentionally separate from ADMIN_EMAIL: the latter is
+    // the admin's login identity, while this is the public contact destination.
+    // Falls back to ADMIN_EMAIL for older deploys that haven't set SUPPORT_EMAIL.
+    const supportInbox = process.env.SUPPORT_EMAIL || process.env.ADMIN_EMAIL;
+    if (!supportInbox) return res.status(500).json({ message: 'Support inbox not configured' });
 
     const result = await sendEmail({
-      to: adminInbox,
+      to: supportInbox,
       replyTo: email,
       ...templates.contactMessage(name, email, message),
     });
