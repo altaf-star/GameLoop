@@ -10,7 +10,7 @@ A full-stack web application for renting physical PlayStation 5 game CDs on a mo
 
 - 🔐 JWT authentication (signup, login, role-based access)
 - 🎮 Game catalog with search, genre filter, and pagination
-- 💳 3 subscription plans (Basic / Standard / Premium)
+- 💳 4-tier subscription model (Starter / Duo / Trio / Vault Master) with refundable security deposits
 - 📦 Rental system (rent / return, slot tracking, availability)
 - 💰 Manual payment flow (NayaPay / EasyPaisa / bank) with screenshot upload
 - 👑 Full admin panel (users, games, subscriptions, rentals, payments, stats)

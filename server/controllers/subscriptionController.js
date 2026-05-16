@@ -32,6 +32,7 @@ exports.subscribe = async (req, res, next) => {
       plan,
       gameLimit: def.gameLimit,
       price: def.price,
+      deposit: def.deposit,
       startDate: start,
       endDate: end,
       status: 'pending',

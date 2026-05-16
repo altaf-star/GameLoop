@@ -8,12 +8,12 @@ import Reveal from '../components/Reveal.jsx';
 
 const TESTIMONIALS = [
   { name: 'Ahmed K.', role: 'Karachi', text: 'Insane collection. I rented Spider-Man 2 and it arrived next day. Smooth experience end to end.' },
-  { name: 'Hira S.', role: 'Lahore', text: 'Way cheaper than buying every game. The Standard plan covers all my weekend gaming.' },
+  { name: 'Hira S.', role: 'Lahore', text: 'Way cheaper than buying every game. The Duo Bundle covers all my weekend gaming.' },
   { name: 'Bilal R.', role: 'Islamabad', text: 'Customer service is quick, and returning games is just a WhatsApp away. Highly recommend.' },
 ];
 
 const HOW_IT_WORKS = [
-  { step: '01', title: 'Subscribe', desc: 'Pick a plan that matches your gaming appetite — Basic, Standard, or Premium.' },
+  { step: '01', title: 'Subscribe', desc: 'Pick a plan that matches your gaming appetite — Starter, Duo, Trio, or Vault Master.' },
   { step: '02', title: 'Choose Games', desc: 'Browse our PS5 library and queue up the titles you want to play.' },
   { step: '03', title: 'Get Delivery', desc: 'We ship the CDs to your door. Play, finish, return — repeat.' },
 ];
@@ -102,10 +102,11 @@ export default function Home() {
           </div>
         </Reveal>
         {plans && (
-          <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
-            <Reveal delay={0}><PlanCard planKey="basic" plan={plans.basic} onSubscribe={() => {}} /></Reveal>
-            <Reveal delay={120}><PlanCard planKey="standard" plan={plans.standard} onSubscribe={() => {}} highlighted /></Reveal>
-            <Reveal delay={240}><PlanCard planKey="premium" plan={plans.premium} onSubscribe={() => {}} /></Reveal>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
+            <Reveal delay={0}><PlanCard planKey="starter" plan={plans.starter} onSubscribe={() => {}} /></Reveal>
+            <Reveal delay={120}><PlanCard planKey="duo" plan={plans.duo} onSubscribe={() => {}} highlighted /></Reveal>
+            <Reveal delay={240}><PlanCard planKey="trio" plan={plans.trio} onSubscribe={() => {}} /></Reveal>
+            <Reveal delay={360}><PlanCard planKey="vault_master" plan={plans.vault_master} onSubscribe={() => {}} /></Reveal>
           </div>
         )}
         <Reveal>

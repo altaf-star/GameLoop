@@ -2,13 +2,15 @@ import { useState } from 'react';
 
 const FAQS = [
   { q: 'How does the rental process work?', a: 'Subscribe to a plan, pick games from our catalog, and we deliver the physical CDs to your door. Keep each game for up to 14 days, then return it to free up a rental slot.' },
-  { q: 'How many games can I rent at once?', a: 'Depends on your plan. Basic allows 2, Standard allows 4, and Premium allows 6 active rentals at any time.' },
+  { q: 'How many games can I rent at once?', a: 'Depends on your plan. Starter allows 1, Duo allows 2, Trio allows 3, and Vault Master allows 4 active rentals at any time.' },
   { q: 'Which cities do you deliver to?', a: 'Currently Karachi, Lahore, and Islamabad. We\'re expanding across Pakistan.' },
   { q: 'How long does delivery take?', a: 'Within Lahore: same day. Other cities: 1–3 business days.' },
-  { q: 'What if a game is scratched or damaged?', a: 'Notify us immediately on WhatsApp. If the damage is from our side, we\'ll replace it free. Accidental damage by the renter may incur a fee.' },
-  { q: 'Can I cancel my subscription anytime?', a: 'Yes. Your plan stays active until the current 30-day cycle ends; we don\'t charge automatically for the next one.' },
+  { q: 'What if a game is scratched or damaged?', a: 'Notify us immediately on WhatsApp. If the damage is from our side, we\'ll replace it free. Accidental damage by the renter may incur a fee that comes out of your security deposit.' },
+  { q: 'Can I cancel my subscription anytime?', a: 'Yes. Your plan stays active until the current 30-day cycle ends; we don\'t charge automatically for the next one. Once all games are returned, the security deposit is refunded (minus any damage charges).' },
   { q: 'Do you sell games too?', a: 'No — we\'re rental-only. But we regularly add new PS5 releases to the catalog.' },
   { q: 'How do I pay?', a: 'NayaPay, EasyPaisa, or bank transfer. After subscribing, you\'ll see the payment details and upload a screenshot — we verify manually.' },
+  { q: 'What is the security deposit for?', a: 'Each tier has a one-time refundable deposit (Rs. 12,000 to Rs. 25,000) that protects the value of the physical games you hold. It\'s returned in full when you cancel, return all games, and the discs are confirmed undamaged.' },
+  { q: 'Can I pay the deposit in installments?', a: 'Yes — but only for Trio and Vault Master tiers, and only after a verification step. Either provide a postdated cheque / verified guarantor up front, or qualify after 3 months of perfect payment history on a lower tier. Contact us to start an installment plan.' },
 ];
 
 export default function FAQ() {

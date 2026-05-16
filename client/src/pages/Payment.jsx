@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import api from '../services/api';
+import { useApi } from '../hooks/useApi';
+import Loading from '../components/Loading.jsx';
 
 // Placeholder payment numbers — real deployment would fetch these from a
 // settings collection or env var so the admin can rotate them.
@@ -13,6 +15,11 @@ const PAYMENT_METHODS = [
 export default function Payment() {
   const { subscriptionId } = useParams();
   const navigate = useNavigate();
+  // Pulls the just-created pending subscription so we can show the
+  // first-payment breakdown (monthly + refundable deposit).
+  const { data: current, loading } = useApi('/subscriptions/current');
+  const sub = current?.subscription;
+
   const [method, setMethod] = useState('nayapay');
   const [transactionId, setTransactionId] = useState('');
   const [amount, setAmount] = useState('');
@@ -51,11 +58,41 @@ export default function Payment() {
   };
 
   const active = PAYMENT_METHODS.find(m => m.value === method);
+  const monthly = sub?.price || 0;
+  const deposit = sub?.deposit || 0;
+  const total = monthly + deposit;
+
+  if (loading) return <Loading />;
 
   return (
     <div className="max-w-3xl mx-auto px-6 py-12">
       <h1 className="text-3xl font-bold mb-2">Complete your payment</h1>
       <p className="text-ps-muted mb-8">Send the payment and upload a screenshot. Admin approval usually takes a few hours.</p>
+
+      {sub && (
+        <div className="card mb-6">
+          <h3 className="font-semibold mb-3">Amount due</h3>
+          <div className="space-y-2 text-sm">
+            <div className="flex justify-between">
+              <span className="text-ps-muted">First month subscription</span>
+              <span>Rs. {monthly.toLocaleString()}</span>
+            </div>
+            <div className="flex justify-between">
+              <span className="text-ps-muted">Refundable security deposit</span>
+              <span>Rs. {deposit.toLocaleString()}</span>
+            </div>
+            <div className="border-t border-ps-border pt-2 flex justify-between font-semibold text-base">
+              <span>Total to pay now</span>
+              <span className="text-ps-blueLight">Rs. {total.toLocaleString()}</span>
+            </div>
+          </div>
+          {deposit > 0 && (
+            <p className="text-xs text-ps-muted mt-3">
+              The deposit is returned (minus any damage charges) when you cancel and all rented games are returned.
+            </p>
+          )}
+        </div>
+      )}
 
       <div className="grid md:grid-cols-2 gap-6">
         <div className="card">
@@ -87,9 +124,11 @@ export default function Payment() {
               <input className="input" value={transactionId} onChange={e => setTransactionId(e.target.value)} />
             </div>
             <div>
-              <label className="label">Amount paid (optional)</label>
-              <input type="number" className="input" placeholder="Auto-filled from plan"
+              <label className="label">Amount paid</label>
+              <input type="number" className="input"
+                     placeholder={total ? `Rs. ${total.toLocaleString()} (monthly + deposit)` : 'Auto-filled from plan'}
                      value={amount} onChange={e => setAmount(e.target.value)} />
+              <p className="text-xs text-ps-muted mt-1">Leave blank to auto-fill the full amount.</p>
             </div>
             <div>
               <label className="label">Screenshot</label>

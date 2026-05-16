@@ -44,10 +44,11 @@ export default function Plans() {
       {error && <div className="mb-6 p-3 rounded-lg bg-red-500/10 border border-red-500/30 text-red-400 text-sm max-w-xl mx-auto">{error}</div>}
 
       {plans && (
-        <div className="grid md:grid-cols-3 gap-6">
-          <Reveal delay={0}><PlanCard planKey="basic" plan={plans.basic} onSubscribe={subscribe} busy={busy === 'basic'} /></Reveal>
-          <Reveal delay={120}><PlanCard planKey="standard" plan={plans.standard} onSubscribe={subscribe} busy={busy === 'standard'} highlighted /></Reveal>
-          <Reveal delay={240}><PlanCard planKey="premium" plan={plans.premium} onSubscribe={subscribe} busy={busy === 'premium'} /></Reveal>
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <Reveal delay={0}><PlanCard planKey="starter" plan={plans.starter} onSubscribe={subscribe} busy={busy === 'starter'} /></Reveal>
+          <Reveal delay={120}><PlanCard planKey="duo" plan={plans.duo} onSubscribe={subscribe} busy={busy === 'duo'} highlighted /></Reveal>
+          <Reveal delay={240}><PlanCard planKey="trio" plan={plans.trio} onSubscribe={subscribe} busy={busy === 'trio'} /></Reveal>
+          <Reveal delay={360}><PlanCard planKey="vault_master" plan={plans.vault_master} onSubscribe={subscribe} busy={busy === 'vault_master'} /></Reveal>
         </div>
       )}
 
@@ -56,10 +57,23 @@ export default function Plans() {
           <h3 className="font-semibold mb-2">How payment works</h3>
           <ol className="text-sm text-ps-muted space-y-2 list-decimal list-inside">
             <li>Pick a plan — we create a pending subscription.</li>
-            <li>Send the payment via NayaPay or EasyPaisa to the number shown on the next page.</li>
+            <li>Pay the <strong>first month + refundable deposit</strong> via NayaPay or EasyPaisa to the number shown on the next page.</li>
             <li>Upload a screenshot of the transaction.</li>
             <li>Once an admin verifies the payment, your subscription goes live and you can start renting.</li>
+            <li>The deposit is returned (minus any damage charges) when you cancel and return all rented games.</li>
           </ol>
+        </div>
+      </Reveal>
+
+      <Reveal>
+        <div className="mt-6 card max-w-3xl mx-auto border-ps-blue/40 bg-ps-blue/5">
+          <h3 className="font-semibold mb-2 text-ps-blueLight">About installment deposits</h3>
+          <p className="text-sm text-ps-muted">
+            Trio and Vault Master deposits can be paid in installments — but only after a
+            verification step. New customers either provide a postdated cheque / verified
+            guarantor, or upgrade after 3 months of perfect payment history on a lower tier.
+            Contact us to start an installment plan.
+          </p>
         </div>
       </Reveal>
     </div>

@@ -13,10 +13,14 @@ exports.create = async (req, res, next) => {
       return res.status(404).json({ message: 'Subscription not found' });
     }
 
+    // First payment covers monthly + refundable deposit. If the user typed a
+    // custom amount we honour it (so admin can spot mismatches), otherwise
+    // default to the full expected total.
+    const expectedTotal = (sub.price || 0) + (sub.deposit || 0);
     const payment = await Payment.create({
       user: req.user._id,
       subscription: sub._id,
-      amount: Number(amount) || sub.price,
+      amount: Number(amount) || expectedTotal,
       method,
       transactionId: transactionId || '',
       screenshot: req.file.path,

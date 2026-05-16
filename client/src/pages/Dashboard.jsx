@@ -14,6 +14,15 @@ const DELIVERY_STEPS = [
   { key: 'delivered', label: 'Delivered' },
 ];
 
+// Mirrors the server-side PLAN keys so we render proper display names
+// (`vault_master` -> `Vault Master`) instead of a raw capitalized slug.
+const PLAN_LABELS = {
+  starter: 'Starter',
+  duo: 'Duo Bundle',
+  trio: 'Trio Bundle',
+  vault_master: 'Vault Master',
+};
+
 // Simple horizontal progress bar so users can see where their CD is.
 function DeliveryTimeline({ status }) {
   const currentIdx = DELIVERY_STEPS.findIndex(s => s.key === status);
@@ -87,16 +96,23 @@ export default function Dashboard() {
         <Reveal delay={0}>
           <div className="card">
             <p className="text-xs uppercase text-ps-muted tracking-wider">Plan</p>
-            <p className="text-2xl font-bold mt-1 capitalize">
-              {sub?.subscription?.plan || 'None'}
+            <p className="text-2xl font-bold mt-1">
+              {PLAN_LABELS[sub?.subscription?.plan] || 'None'}
             </p>
             {sub?.subscription && (
-              <p className="text-xs text-ps-muted mt-2">
-                Status: <span className={
-                  sub.subscription.status === 'active' ? 'text-green-400' :
-                  sub.subscription.status === 'pending' ? 'text-yellow-400' : 'text-red-400'
-                }>{sub.subscription.status}</span>
-              </p>
+              <>
+                <p className="text-xs text-ps-muted mt-2">
+                  Status: <span className={
+                    sub.subscription.status === 'active' ? 'text-green-400' :
+                    sub.subscription.status === 'pending' ? 'text-yellow-400' : 'text-red-400'
+                  }>{sub.subscription.status}</span>
+                </p>
+                {sub.subscription.deposit > 0 && (
+                  <p className="text-xs text-ps-muted mt-1">
+                    Deposit held: <span className="text-ps-blueLight">Rs. {sub.subscription.deposit.toLocaleString()}</span>
+                  </p>
+                )}
+              </>
             )}
           </div>
         </Reveal>
